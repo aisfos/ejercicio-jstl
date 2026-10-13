@@ -19,11 +19,16 @@
     leer la conexion:
         dataSource="${bd}"
 --%>
+<%
+  String dbUrl  = System.getenv("DB_URL")      != null ? System.getenv("DB_URL")      : "jdbc:mysql://localhost:3306/empleados?useSSL=false&serverTimezone=UTC";
+  String dbUser = System.getenv("DB_USER")     != null ? System.getenv("DB_USER")     : "root";
+  String dbPass = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : "";
+%>
 <sql:setDataSource var="bd"
     driver="com.mysql.cj.jdbc.Driver"
-    url="jdbc:mysql://localhost:3306/empleados?useSSL=false&serverTimezone=UTC"
-    user="root"
-    password="" />
+    url="<%= dbUrl %>"
+    user="<%= dbUser %>"
+    password="<%= dbPass %>" />
 
 <%--
     EJERCICIO 8 - Etiquetas SQL
